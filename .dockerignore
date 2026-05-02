@@ -33,6 +33,7 @@ venv
 # local databases
 *.db
 server/*.db
+!server/app.db
 
 # logs / coverage
 *.log

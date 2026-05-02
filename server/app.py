@@ -18,6 +18,12 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 STATIC_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "client", "dist"))
 ASSETS_DIR = os.path.join(STATIC_DIR, "assets")
 
+
+def my_resolving_database_uri():
+    db_path = os.path.abspath(os.path.join(BASE_DIR, "app.db"))
+    return "sqlite:///%s" % db_path.replace("\\", "/")
+
+
 # below i have written out functions to clean out the object data that i am passing and ensuring it is valid for the actual database that i have
 def my_checking_dates(value, label):
     if value is None or (isinstance(value, str) and value.strip() == ""):
@@ -97,7 +103,7 @@ def create_app(test_config=None):
     if test_config:
         app.config.update(test_config)
     else:
-        app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "sqlite:///%s" % os.path.join(BASE_DIR, "app.db").replace("\\", "/"))
+        app.config["SQLALCHEMY_DATABASE_URI"] = my_resolving_database_uri()
 
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "wemby-mvp")
