@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.font-brand {
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  font-weight: 700;
+}
+
+/* here i soften the webkit date picker icon a little */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.5;
+  cursor: pointer;
+}
