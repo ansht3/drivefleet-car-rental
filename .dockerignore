@@ -1,0 +1,40 @@
+# git / editor files
+.git
+.gitignore
+.gcloudignore
+.claude
+.cursor
+.vscode
+.DS_Store
+
+# frontend build/dependency folders
+client/node_modules
+client/dist
+**/node_modules
+**/dist
+
+# python cache/test files
+server/__pycache__
+server/.pytest_cache
+**/__pycache__
+**/.pytest_cache
+**/*.pyc
+**/*.pyo
+**/*.pyd
+
+# local environments/secrets
+.env
+.env.*
+.venv
+venv
+**/.venv
+**/venv
+
+# local databases
+*.db
+server/*.db
+
+# logs / coverage
+*.log
+.coverage
+htmlcov

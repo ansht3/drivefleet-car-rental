@@ -24,10 +24,3 @@ client/dist/
 # os
 .DS_Store
 Thumbs.db
-
-# docker
-Dockerfile
-.dockerignore
-
-# deploy config 
-app.yaml

@@ -1,0 +1,29 @@
+# Google Cloud App Engine config for DriveFleet
+# deploy with: gcloud app deploy
+#
+# assumes you've already run `cd client && npm run build` so the
+# React bundle exists at client/dist/
+#
+# locally just use `python app.py` — this file is ignored by Flask.
+
+runtime: python312
+
+entrypoint: gunicorn -b :$PORT -w 2 app:app
+
+env_variables:
+  # set this to a Cloud SQL connection string to use Postgres in prod,
+  # or leave it unset and the app falls back to local SQLite
+  # DATABASE_URL: "postgresql+psycopg2://user:pass@/dbname?host=/cloudsql/PROJECT:REGION:INSTANCE"
+  FLASK_ENV: "production"
+
+instance_class: F1
+
+automatic_scaling:
+  min_instances: 0
+  max_instances: 2
+
+handlers:
+  - url: /api/.*
+    script: auto
+  - url: /.*
+    script: auto
